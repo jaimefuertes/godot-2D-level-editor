@@ -1,0 +1,204 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccdnkxgyr5a4h"]
+
+[ext_resource type="Script" path="res://addons/gle2d/scripts/manager.gd" id="1_80kvq"]
+[ext_resource type="Script" path="res://addons/gle2d/scripts/roomList.gd" id="2_l1ei5"]
+
+[node name="Map" type="TabBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapManager" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_80kvq")
+
+[node name="RoomPanel" type="Panel" parent="MapManager"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapManager/RoomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MapManager/RoomPanel/VBoxContainer"]
+layout_mode = 2
+text = "ROOMS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoomList" type="ScrollContainer" parent="MapManager/RoomPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_l1ei5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MapManager/RoomPanel/VBoxContainer/RoomList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+
+[node name="Container" type="VBoxContainer" parent="MapManager/RoomPanel/VBoxContainer/RoomList/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RoomProto" type="Label" parent="MapManager/RoomPanel/VBoxContainer/RoomList/MarginContainer/Container"]
+layout_mode = 2
+text = "PRUEBA"
+
+[node name="NewRoom" type="Button" parent="MapManager/RoomPanel/VBoxContainer"]
+layout_mode = 2
+text = "ADD"
+
+[node name="CreateDialog" type="Panel" parent="MapManager"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -219.0
+offset_right = 317.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MapManager/CreateDialog"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 19.0
+offset_right = 100.0
+offset_bottom = 45.0
+grow_horizontal = 2
+text = "CREATE NEW ROOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="VBoxContainer" parent="MapManager/CreateDialog"]
+layout_mode = 2
+offset_left = 13.0
+offset_top = 81.0
+offset_right = 351.0
+offset_bottom = 171.0
+
+[node name="Label" type="Label" parent="MapManager/CreateDialog/Name"]
+layout_mode = 2
+text = "Name"
+
+[node name="Value" type="LineEdit" parent="MapManager/CreateDialog/Name"]
+layout_mode = 2
+placeholder_text = "Insert your room name!"
+
+[node name="Pos" type="HBoxContainer" parent="MapManager/CreateDialog"]
+layout_mode = 2
+offset_left = 397.0
+offset_top = 81.0
+offset_right = 597.0
+offset_bottom = 163.0
+
+[node name="X" type="VBoxContainer" parent="MapManager/CreateDialog/Pos"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MapManager/CreateDialog/Pos/X"]
+layout_mode = 2
+text = "Pos X"
+
+[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Pos/X"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+update_on_text_changed = true
+
+[node name="Y" type="VBoxContainer" parent="MapManager/CreateDialog/Pos"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MapManager/CreateDialog/Pos/Y"]
+layout_mode = 2
+text = "Pos Y"
+
+[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Pos/Y"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+update_on_text_changed = true
+
+[node name="Size" type="HBoxContainer" parent="MapManager/CreateDialog"]
+layout_mode = 2
+offset_left = 397.0
+offset_top = 174.0
+offset_right = 597.0
+offset_bottom = 256.0
+
+[node name="X" type="VBoxContainer" parent="MapManager/CreateDialog/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MapManager/CreateDialog/Size/X"]
+layout_mode = 2
+text = "Size X"
+
+[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Size/X"]
+layout_mode = 2
+rounded = true
+allow_greater = true
+update_on_text_changed = true
+
+[node name="Y" type="VBoxContainer" parent="MapManager/CreateDialog/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MapManager/CreateDialog/Size/Y"]
+layout_mode = 2
+text = "Size Y"
+
+[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Size/Y"]
+layout_mode = 2
+max_value = 1.0
+rounded = true
+allow_greater = true
+update_on_text_changed = true
+
+[node name="Create" type="Button" parent="MapManager/CreateDialog"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -65.0
+offset_right = 100.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "SAVE"
+
+[connection signal="pressed" from="MapManager/RoomPanel/VBoxContainer/NewRoom" to="MapManager" method="_showCreateDialog"]
+[connection signal="pressed" from="MapManager/CreateDialog/Create" to="MapManager" method="_createRoom"]
