@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccdnkxgyr5a4h"]
+[gd_scene load_steps=4 format=3 uid="uid://dcj71atkv2hrd"]
 
-[ext_resource type="Script" path="res://addons/gle2d/scripts/manager.gd" id="1_80kvq"]
-[ext_resource type="Script" path="res://addons/gle2d/scripts/roomList.gd" id="2_l1ei5"]
+[ext_resource type="Script" path="res://addons/gle2d/components/MapManager.gd" id="1_80nil"]
+
+[sub_resource type="Image" id="Image_iidcw"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 131, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 131, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 131, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 128, 128, 4, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 93, 93, 55, 255, 97, 97, 58, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 97, 97, 42, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 98, 98, 47, 255, 97, 97, 42, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 93, 93, 233, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 94, 94, 46, 255, 93, 93, 236, 255, 93, 93, 233, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 93, 93, 252, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_juxxy"]
+image = SubResource("Image_iidcw")
 
 [node name="Map" type="TabBar"]
 anchors_preset = 15
@@ -17,19 +28,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_80kvq")
+script = ExtResource("1_80nil")
 
-[node name="RoomPanel" type="Panel" parent="MapManager"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -236.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MapManager/RoomPanel"]
+[node name="Content" type="MarginContainer" parent="MapManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,168 +38,126 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="MapManager/RoomPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MapManager/Content"]
 layout_mode = 2
-text = "ROOMS"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="RoomList" type="ScrollContainer" parent="MapManager/RoomPanel/VBoxContainer"]
+[node name="Toolbar" type="HBoxContainer" parent="MapManager/Content/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("2_l1ei5")
 
-[node name="MarginContainer" type="MarginContainer" parent="MapManager/RoomPanel/VBoxContainer/RoomList"]
+[node name="NewMapButton" type="Button" parent="MapManager/Content/VBoxContainer/Toolbar"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
+icon = SubResource("ImageTexture_juxxy")
 
-[node name="Container" type="VBoxContainer" parent="MapManager/RoomPanel/VBoxContainer/RoomList/MarginContainer"]
+[node name="OpenMapButton" type="Button" parent="MapManager/Content/VBoxContainer/Toolbar"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+icon = SubResource("ImageTexture_juxxy")
 
-[node name="RoomProto" type="Label" parent="MapManager/RoomPanel/VBoxContainer/RoomList/MarginContainer/Container"]
+[node name="SaveMapButton" type="Button" parent="MapManager/Content/VBoxContainer/Toolbar"]
 layout_mode = 2
-text = "PRUEBA"
+disabled = true
+icon = SubResource("ImageTexture_juxxy")
 
-[node name="NewRoom" type="Button" parent="MapManager/RoomPanel/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MapManager/Content/VBoxContainer/Toolbar"]
 layout_mode = 2
-text = "ADD"
 
-[node name="CreateDialog" type="Panel" parent="MapManager"]
+[node name="NewNodeButton" type="Button" parent="MapManager/Content/VBoxContainer/Toolbar"]
+layout_mode = 2
+disabled = true
+icon = SubResource("ImageTexture_juxxy")
+
+[node name="DeleteNodeButton" type="Button" parent="MapManager/Content/VBoxContainer/Toolbar"]
+layout_mode = 2
+disabled = true
+icon = SubResource("ImageTexture_juxxy")
+
+[node name="MapName" type="Label" parent="MapManager/Content/VBoxContainer/Toolbar"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="MapEditor" type="GraphEdit" parent="MapManager/Content/VBoxContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -317.0
-offset_top = -219.0
-offset_right = 317.0
-offset_bottom = 219.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="MapManager/CreateDialog"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.0
-offset_top = 19.0
-offset_right = 100.0
-offset_bottom = 45.0
-grow_horizontal = 2
-text = "CREATE NEW ROOM"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Name" type="VBoxContainer" parent="MapManager/CreateDialog"]
 layout_mode = 2
-offset_left = 13.0
-offset_top = 81.0
-offset_right = 351.0
-offset_bottom = 171.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+right_disconnects = true
+minimap_enabled = false
+arrange_nodes_button_hidden = true
 
-[node name="Label" type="Label" parent="MapManager/CreateDialog/Name"]
+[node name="NewMapNodeDialog" type="ConfirmationDialog" parent="MapManager"]
+initial_position = 2
+title = "Create New Room Node"
+size = Vector2i(308, 177)
+transient = false
+unresizable = true
+ok_button_text = "Create"
+
+[node name="VBox" type="VBoxContainer" parent="MapManager/NewMapNodeDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 128.0
+
+[node name="TextEdit" type="TextEdit" parent="MapManager/NewMapNodeDialog/VBox"]
 layout_mode = 2
-text = "Name"
+size_flags_vertical = 3
+placeholder_text = "Room Name"
 
-[node name="Value" type="LineEdit" parent="MapManager/CreateDialog/Name"]
-layout_mode = 2
-placeholder_text = "Insert your room name!"
-
-[node name="Pos" type="HBoxContainer" parent="MapManager/CreateDialog"]
-layout_mode = 2
-offset_left = 397.0
-offset_top = 81.0
-offset_right = 597.0
-offset_bottom = 163.0
-
-[node name="X" type="VBoxContainer" parent="MapManager/CreateDialog/Pos"]
+[node name="HBox" type="HBoxContainer" parent="MapManager/NewMapNodeDialog/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MapManager/CreateDialog/Pos/X"]
-layout_mode = 2
-text = "Pos X"
-
-[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Pos/X"]
-layout_mode = 2
-rounded = true
-allow_greater = true
-update_on_text_changed = true
-
-[node name="Y" type="VBoxContainer" parent="MapManager/CreateDialog/Pos"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MapManager/CreateDialog/Pos/Y"]
-layout_mode = 2
-text = "Pos Y"
-
-[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Pos/Y"]
-layout_mode = 2
-rounded = true
-allow_greater = true
-update_on_text_changed = true
-
-[node name="Size" type="HBoxContainer" parent="MapManager/CreateDialog"]
-layout_mode = 2
-offset_left = 397.0
-offset_top = 174.0
-offset_right = 597.0
-offset_bottom = 256.0
-
-[node name="X" type="VBoxContainer" parent="MapManager/CreateDialog/Size"]
+[node name="LabelsVBox" type="VBoxContainer" parent="MapManager/NewMapNodeDialog/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MapManager/CreateDialog/Size/X"]
+[node name="Entrances" type="Label" parent="MapManager/NewMapNodeDialog/VBox/HBox/LabelsVBox"]
 layout_mode = 2
-text = "Size X"
+text = "Entrances"
 
-[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Size/X"]
+[node name="Exits" type="Label" parent="MapManager/NewMapNodeDialog/VBox/HBox/LabelsVBox"]
 layout_mode = 2
-rounded = true
-allow_greater = true
-update_on_text_changed = true
+text = "Exits"
 
-[node name="Y" type="VBoxContainer" parent="MapManager/CreateDialog/Size"]
+[node name="SpinBoxVBox" type="VBoxContainer" parent="MapManager/NewMapNodeDialog/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MapManager/CreateDialog/Size/Y"]
+[node name="EntranceSpinBox" type="SpinBox" parent="MapManager/NewMapNodeDialog/VBox/HBox/SpinBoxVBox"]
 layout_mode = 2
-text = "Size Y"
-
-[node name="Value" type="SpinBox" parent="MapManager/CreateDialog/Size/Y"]
-layout_mode = 2
-max_value = 1.0
+size_flags_horizontal = 3
+max_value = 4.0
 rounded = true
-allow_greater = true
 update_on_text_changed = true
 
-[node name="Create" type="Button" parent="MapManager/CreateDialog"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -65.0
-offset_right = 100.0
-offset_bottom = -34.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "SAVE"
+[node name="ExitSpinBox" type="SpinBox" parent="MapManager/NewMapNodeDialog/VBox/HBox/SpinBoxVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 4.0
+rounded = true
+update_on_text_changed = true
 
-[connection signal="pressed" from="MapManager/RoomPanel/VBoxContainer/NewRoom" to="MapManager" method="_showCreateDialog"]
-[connection signal="pressed" from="MapManager/CreateDialog/Create" to="MapManager" method="_createRoom"]
+[node name="NewMapDialog" type="FileDialog" parent="MapManager"]
+initial_position = 2
+title = "Save Map"
+size = Vector2i(500, 400)
+transient = false
+unresizable = true
+ok_button_text = "Save"
+filters = PackedStringArray("*.tres")
+
+[connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/NewMapButton" to="MapManager" method="_on_new_map_button_pressed"]
+[connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/OpenMapButton" to="MapManager" method="_on_open_map_button_pressed"]
+[connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/SaveMapButton" to="MapManager" method="_on_save_map_button_pressed"]
+[connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/NewNodeButton" to="MapManager" method="_on_new_node_button_pressed"]
+[connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/DeleteNodeButton" to="MapManager" method="_on_delete_node_button_pressed"]
+[connection signal="connection_request" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_connection_request"]
+[connection signal="disconnection_request" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_disconnection_request"]
+[connection signal="node_deselected" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_node_deselected"]
+[connection signal="node_selected" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_node_selected"]
+[connection signal="canceled" from="MapManager/NewMapNodeDialog" to="MapManager" method="_on_new_map_node_dialog_close_requested"]
+[connection signal="close_requested" from="MapManager/NewMapNodeDialog" to="MapManager" method="_on_new_map_node_dialog_close_requested"]
+[connection signal="confirmed" from="MapManager/NewMapNodeDialog" to="MapManager" method="_on_new_map_node_dialog_confirmed"]
+[connection signal="file_selected" from="MapManager/NewMapDialog" to="MapManager" method="_on_new_map_dialog_confirmed"]

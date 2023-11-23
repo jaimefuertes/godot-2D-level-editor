@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d28nl3xww732i"]
 
-[ext_resource type="PackedScene" uid="uid://ccdnkxgyr5a4h" path="res://addons/gle2d/views/tabs/MapTab.tscn" id="1_8s2t0"]
-[ext_resource type="PackedScene" uid="uid://0i6umh8avu4t" path="res://addons/gle2d/views/tabs/RoomTab.tscn" id="2_8at3s"]
-[ext_resource type="PackedScene" uid="uid://cqa8q3d5ny6ap" path="res://addons/gle2d/views/tabs/PresetTab.tscn" id="3_j84su"]
-[ext_resource type="PackedScene" uid="uid://wdhu4h8r2jfp" path="res://addons/gle2d/views/tabs/Resources.tscn" id="4_0limw"]
+[ext_resource type="PackedScene" uid="uid://dcj71atkv2hrd" path="res://addons/gle2d/views/tabs/MapTab.tscn" id="1_k7mps"]
+[ext_resource type="PackedScene" uid="uid://0i6umh8avu4t" path="res://addons/gle2d/views/tabs/RoomTab.tscn" id="2_sbcq8"]
+[ext_resource type="PackedScene" uid="uid://cqa8q3d5ny6ap" path="res://addons/gle2d/views/tabs/PresetTab.tscn" id="3_pqraa"]
+[ext_resource type="PackedScene" uid="uid://wdhu4h8r2jfp" path="res://addons/gle2d/views/tabs/Resources.tscn" id="4_x6mx4"]
 
 [node name="MainView" type="Control"]
 layout_mode = 3
@@ -27,17 +27,17 @@ grow_vertical = 2
 layout_mode = 2
 tab_alignment = 1
 
-[node name="Map" parent="Margin/TabContainer" instance=ExtResource("1_8s2t0")]
+[node name="Map" parent="Margin/TabContainer" instance=ExtResource("1_k7mps")]
 layout_mode = 2
 
-[node name="Room" parent="Margin/TabContainer" instance=ExtResource("2_8at3s")]
+[node name="Room" parent="Margin/TabContainer" instance=ExtResource("2_sbcq8")]
 visible = false
 layout_mode = 2
 
-[node name="Preset" parent="Margin/TabContainer" instance=ExtResource("3_j84su")]
+[node name="Preset" parent="Margin/TabContainer" instance=ExtResource("3_pqraa")]
 visible = false
 layout_mode = 2
 
-[node name="Resources" parent="Margin/TabContainer" instance=ExtResource("4_0limw")]
+[node name="Resources" parent="Margin/TabContainer" instance=ExtResource("4_x6mx4")]
 visible = false
 layout_mode = 2

@@ -2,11 +2,10 @@
 extends EditorPlugin
 
 
-const mainPanel = preload("res://addons/gle2d/views/gle2DMain.tscn")
+const mainPanel = preload("res://addons/gle2d/views/GLE2DMain.tscn")
 var mainPanelInstance
 
 func _enter_tree():
-	add_autoload_singleton("Rooms", "res://addons/gle2d/autoloads/Rooms.gd")
 	mainPanelInstance = mainPanel.instantiate()
 	# Add the main panel to the editor's main viewport.
 	get_editor_interface().get_editor_main_screen().add_child(mainPanelInstance)
