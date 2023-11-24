@@ -35,11 +35,15 @@ func _ready():
 		mapEditor.hide()
 	applyTheme()
 
+func _process(delta):
+	if mapResource:
+		saveMapButton.disabled = !mapResource.hasChanges
+
 func applyTheme():
 	newMapButton.icon = get_theme_icon("New", "EditorIcons")
 	openMapButton.icon = get_theme_icon("Load", "EditorIcons")
 	saveMapButton.icon = get_theme_icon("Save", "EditorIcons")
-	newNodeButton.icon = get_theme_icon("New", "EditorIcons")
+	newNodeButton.icon = get_theme_icon("Add", "EditorIcons")
 	deleteNodeButton.icon = get_theme_icon("MissingNode", "EditorIcons")
 	
 # Map Data Functions
@@ -121,6 +125,7 @@ func loadMapResource():
 	
 func saveMapResource():
 	var connections =  mapEditor.get_connection_list()
+	mapResource.clearConnections()
 	var nodes = mapEditor.get_children()
 	for node in nodes:
 		node = node as GraphNode
@@ -132,6 +137,8 @@ func saveMapResource():
 				for nodeTo in nodes:
 					if nodeToName == nodeTo.name:
 						mapResource.addConnection(node.title, dict["from_port"], nodeTo.title, dict["to_port"])
+	
+	mapResource.saved()
 	ResourceSaver.save(mapResource, mapResourcePath)
 # Map Nodes Functions
 
@@ -204,7 +211,8 @@ func _on_new_map_node_dialog_close_requested():
 # Connect 2 nodes
 func _on_map_editor_connection_request(from_node, from_port, to_node, to_port):
 	var connections = mapEditor.get_connection_list()
-	# disconnects a node if it has a connection
+	# disconnects a node if it has a connection	
+	
 	for dict in connections:
 		if dict["from"] == from_node and dict["from_port"] == from_port:
 			mapEditor.disconnect_node(from_node, from_port, dict["to"], dict["to_port"])
@@ -212,6 +220,7 @@ func _on_map_editor_connection_request(from_node, from_port, to_node, to_port):
 			mapEditor.disconnect_node(dict["from"], dict["from_port"], to_node, to_port)
 	# connects to new node
 	mapEditor.connect_node(from_node, from_port, to_node, to_port)
+	
 	
 # Disconnects 2 node
 func _on_map_editor_disconnection_request(from_node, from_port, to_node, to_port):
