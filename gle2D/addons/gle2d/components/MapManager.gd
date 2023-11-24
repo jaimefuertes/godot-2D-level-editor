@@ -11,6 +11,7 @@ const RoomNode = preload("res://addons/gle2d/components/RoomNode.tscn")
 @onready var newMapButton : Button = $Content/VBoxContainer/Toolbar/NewMapButton
 @onready var openMapButton : Button = $Content/VBoxContainer/Toolbar/OpenMapButton
 @onready var saveMapButton : Button = $Content/VBoxContainer/Toolbar/SaveMapButton
+@onready var editNodeButton : Button = $Content/VBoxContainer/Toolbar/EditNodeButton
 @onready var mapName : Label = $Content/VBoxContainer/Toolbar/MapName
 # Dialog References
 @onready var newMapNodeDialog : ConfirmationDialog = $NewMapNodeDialog
@@ -29,9 +30,11 @@ func _ready():
 	# disable by default
 	
 	deleteNodeButton.disabled = true
+	editNodeButton.disabled = true
 	if mapResource == null:
 		newNodeButton.disabled = true
 		saveMapButton.disabled = true
+		
 		mapEditor.hide()
 	applyTheme()
 
@@ -44,6 +47,7 @@ func applyTheme():
 	openMapButton.icon = get_theme_icon("Load", "EditorIcons")
 	saveMapButton.icon = get_theme_icon("Save", "EditorIcons")
 	newNodeButton.icon = get_theme_icon("Add", "EditorIcons")
+	editNodeButton.icon = get_theme_icon("Blend", "EditorIcons")
 	deleteNodeButton.icon = get_theme_icon("MissingNode", "EditorIcons")
 	
 # Map Data Functions
@@ -56,12 +60,12 @@ func _on_new_map_button_pressed():
 # Open Map
 func _on_open_map_button_pressed():
 	deleteNodeButton.disabled = true
+	editNodeButton.disabled = true
 	newMapDialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	newMapDialog.show()
 
 # Save Map
 func _on_save_map_button_pressed():
-	
 	saveMapResource()
 
 # Create Map File
@@ -81,15 +85,18 @@ func _on_new_map_dialog_confirmed(path):
 		ResourceSaver.save(mapResource, path)
 		loadMapResource()
 	else:
+		if mapResource != null:
+			saveMapResource()
 		mapResource = ResourceLoader.load(path)
 		mapResourcePath = path
 		mapName.text = file
 		loadMapResource()
 
+# loads map from resource
 func loadMapResource():
+	selectedNodes = []
 	# enable toolbar buttons
 	newNodeButton.disabled = false
-	saveMapButton.disabled = false
 	
 	# clear current map editor
 	var connections = mapEditor.get_connection_list()
@@ -107,7 +114,7 @@ func loadMapResource():
 	
 	for key in nodes.keys():
 		var node = nodes[key]
-		createNewNode(key, node["position_offset"], node["inputs"], node["outputs"])
+		createNewNode(key, node["position_offset"], node["doors"])
 	
 	# add connections to nodes
 	for node in nodeConnetions.keys():
@@ -121,16 +128,16 @@ func loadMapResource():
 				if mapNode.title == connection[1]:
 					to = mapNode.name
 			mapEditor.connect_node(from, connection[0], to, connection[2])
+	mapResource.saved()
 	mapEditor.show()
-	
+
+# saves map to resource	
 func saveMapResource():
 	var connections =  mapEditor.get_connection_list()
 	mapResource.clearConnections()
 	var nodes = mapEditor.get_children()
 	for node in nodes:
 		node = node as GraphNode
-		
-		mapResource.updateNodeOffset(node.title, node.position_offset)
 		for dict in connections:
 			if dict["from"] == node.name:
 				var nodeToName = dict["to"]
@@ -143,7 +150,7 @@ func saveMapResource():
 # Map Nodes Functions
 
 # Create New Map Node
-func createNewNode(roomName, positionOffset, inputs, outputs):
+func createNewNode(roomName, positionOffset, doors):
 	# instance
 	var roomNodeInstance : GraphNode = RoomNode.instantiate()
 	
@@ -151,18 +158,13 @@ func createNewNode(roomName, positionOffset, inputs, outputs):
 	if positionOffset != null:
 		roomNodeInstance.position_offset = positionOffset
 	# edit input/output
-	for index in range(inputs):
+	for index in range(doors):
 		var label = Label.new()
-		label.text = "Input"
+		label.text = "Door" + str(index)
 		roomNodeInstance.add_child(label)
-		roomNodeInstance.set_slot(index, true, 0, Color(255, 255, 255), false, 0, Color(255, 255, 255))
-	for index in range(outputs):
-		var label = Label.new()
-		label.text = "Output"
-		roomNodeInstance.add_child(label)
-		roomNodeInstance.set_slot(index+inputs, false, 0, Color(255, 255, 255), true, 0, Color(255, 255, 255))
+		roomNodeInstance.set_slot(index, true, 0, Color(255, 255, 255), true, 0, Color(255, 255, 255))
 	# add to resource
-	mapResource.addNode(roomNodeInstance.title, roomNodeInstance.position_offset, inputs, outputs)
+	mapResource.addNode(roomNodeInstance.title, roomNodeInstance.position_offset, doors)
 	# add to map
 	mapEditor.add_child(roomNodeInstance)
 
@@ -189,34 +191,37 @@ func _on_delete_node_button_pressed():
 	selectedNodes = []
 	deleteNodeButton.disabled = true
 
+# Edit Node Button
+func _on_edit_node_button_pressed():
+	pass # Replace with function body.
+
+
 # Dialog Confirmation
 func _on_new_map_node_dialog_confirmed():
 	var roomNameTextEdit = $NewMapNodeDialog/VBox/TextEdit
-	var entraceSpinBox =$NewMapNodeDialog/VBox/HBox/SpinBoxVBox/EntranceSpinBox
-	var exitSpinBox = $NewMapNodeDialog/VBox/HBox/SpinBoxVBox/ExitSpinBox
+	var doorsSpinBox =$NewMapNodeDialog/VBox/HBox/SpinBoxVBox/DoorsSpinBox
 	#crete new node
-	createNewNode(roomNameTextEdit.text, null, entraceSpinBox.value, exitSpinBox.value)
-	entraceSpinBox.value = 0
-	exitSpinBox.value = 0
+	createNewNode(roomNameTextEdit.text, null, doorsSpinBox.value)
+	doorsSpinBox.value = 0
 	roomNameTextEdit.text = ""
 	
 # Dialog Cancelation / Close
 func _on_new_map_node_dialog_close_requested():
-	var entraceSpinBox =$NewMapNodeDialog/VBox/HBox/SpinBoxVBox/EntranceSpinBox
-	var exitSpinBox = $NewMapNodeDialog/VBox/HBox/SpinBoxVBox/ExitSpinBox
+	var doorsSpinBox =$NewMapNodeDialog/VBox/HBox/SpinBoxVBox/DoorsSpinBox
 	# reset spinbox values
-	entraceSpinBox.value = 0
-	exitSpinBox.value = 0
+	doorsSpinBox.value = 0
 
 # Connect 2 nodes
 func _on_map_editor_connection_request(from_node, from_port, to_node, to_port):
 	var connections = mapEditor.get_connection_list()
 	# disconnects a node if it has a connection	
-	
 	for dict in connections:
 		if dict["from"] == from_node and dict["from_port"] == from_port:
+			# there is a connection from from_node
 			mapEditor.disconnect_node(from_node, from_port, dict["to"], dict["to_port"])
+			print(mapEditor.get_node(from_node))
 		if dict["to"] == to_node and dict["to_port"] == to_port:
+			# there is a connection to to_node
 			mapEditor.disconnect_node(dict["from"], dict["from_port"], to_node, to_port)
 	# connects to new node
 	mapEditor.connect_node(from_node, from_port, to_node, to_port)
@@ -230,6 +235,10 @@ func _on_map_editor_disconnection_request(from_node, from_port, to_node, to_port
 func _on_map_editor_node_selected(node):
 	selectedNodes.append(node)
 	deleteNodeButton.disabled = false
+	if selectedNodes.size() == 1:
+		editNodeButton.disabled = false
+	else:
+		editNodeButton.disabled = true
 
 # Deactivate Delete button
 func _on_map_editor_node_deselected(node):
@@ -237,6 +246,10 @@ func _on_map_editor_node_deselected(node):
 		selectedNodes.erase(node)
 	if selectedNodes.is_empty():
 		deleteNodeButton.disabled = true
+		editNodeButton.disabled = true
 
 
 
+func _on_map_editor_end_node_move():
+	for node in selectedNodes:
+		mapResource.updateNodeOffset(node.title, node.position_offset)

@@ -71,6 +71,9 @@ layout_mode = 2
 disabled = true
 icon = SubResource("ImageTexture_juxxy")
 
+[node name="EditNodeButton" type="Button" parent="MapManager/Content/VBoxContainer/Toolbar"]
+layout_mode = 2
+
 [node name="MapName" type="Label" parent="MapManager/Content/VBoxContainer/Toolbar"]
 layout_mode = 2
 size_flags_horizontal = 10
@@ -91,6 +94,7 @@ title = "Create New Room Node"
 size = Vector2i(308, 177)
 transient = false
 unresizable = true
+always_on_top = true
 ok_button_text = "Create"
 
 [node name="VBox" type="VBoxContainer" parent="MapManager/NewMapNodeDialog"]
@@ -113,30 +117,20 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Entrances" type="Label" parent="MapManager/NewMapNodeDialog/VBox/HBox/LabelsVBox"]
+[node name="Doors" type="Label" parent="MapManager/NewMapNodeDialog/VBox/HBox/LabelsVBox"]
 layout_mode = 2
-text = "Entrances"
-
-[node name="Exits" type="Label" parent="MapManager/NewMapNodeDialog/VBox/HBox/LabelsVBox"]
-layout_mode = 2
-text = "Exits"
+text = "Doors"
 
 [node name="SpinBoxVBox" type="VBoxContainer" parent="MapManager/NewMapNodeDialog/VBox/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EntranceSpinBox" type="SpinBox" parent="MapManager/NewMapNodeDialog/VBox/HBox/SpinBoxVBox"]
+[node name="DoorsSpinBox" type="SpinBox" parent="MapManager/NewMapNodeDialog/VBox/HBox/SpinBoxVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-max_value = 4.0
+max_value = 1.0
 rounded = true
-update_on_text_changed = true
-
-[node name="ExitSpinBox" type="SpinBox" parent="MapManager/NewMapNodeDialog/VBox/HBox/SpinBoxVBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 4.0
-rounded = true
+allow_greater = true
 update_on_text_changed = true
 
 [node name="NewMapDialog" type="FileDialog" parent="MapManager"]
@@ -145,6 +139,7 @@ title = "Save Map"
 size = Vector2i(500, 400)
 transient = false
 unresizable = true
+always_on_top = true
 ok_button_text = "Save"
 filters = PackedStringArray("*.tres")
 
@@ -153,8 +148,10 @@ filters = PackedStringArray("*.tres")
 [connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/SaveMapButton" to="MapManager" method="_on_save_map_button_pressed"]
 [connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/NewNodeButton" to="MapManager" method="_on_new_node_button_pressed"]
 [connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/DeleteNodeButton" to="MapManager" method="_on_delete_node_button_pressed"]
+[connection signal="pressed" from="MapManager/Content/VBoxContainer/Toolbar/EditNodeButton" to="MapManager" method="_on_edit_node_button_pressed"]
 [connection signal="connection_request" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_connection_request"]
 [connection signal="disconnection_request" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_disconnection_request"]
+[connection signal="end_node_move" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_end_node_move"]
 [connection signal="node_deselected" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_node_deselected"]
 [connection signal="node_selected" from="MapManager/Content/VBoxContainer/MapEditor" to="MapManager" method="_on_map_editor_node_selected"]
 [connection signal="canceled" from="MapManager/NewMapNodeDialog" to="MapManager" method="_on_new_map_node_dialog_close_requested"]

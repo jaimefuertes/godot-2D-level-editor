@@ -7,11 +7,10 @@ class_name Map
 @export var connections = {}
 
 
-func addNode(node, position_offset, inputs, outputs):
+func addNode(node, position_offset, doors):
 	nodes[node] = {
 		"position_offset": position_offset,
-		"inputs": inputs,
-		"outputs": outputs,
+		"doors": doors,
 	}
 	hasChanges = true
 
