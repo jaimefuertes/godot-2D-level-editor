@@ -3,7 +3,9 @@ extends EditorPlugin
 
 
 const mainPanel = preload("res://addons/gle2d/views/GLE2DMain.tscn")
+const resourceContainer = preload("res://addons/gle2d/components/ResourceContainer.tscn")
 var mainPanelInstance
+var resourcesDock
 
 func _enter_tree():
 	mainPanelInstance = mainPanel.instantiate()
@@ -11,12 +13,17 @@ func _enter_tree():
 	get_editor_interface().get_editor_main_screen().add_child(mainPanelInstance)
 	# Hide the main panel. Very much required.
 	_make_visible(false)
+	
+	resourcesDock = resourceContainer.instantiate()
+	add_control_to_bottom_panel(resourcesDock, "Resources")
 
 
 func _exit_tree():
 	if mainPanelInstance:
 		mainPanelInstance.queue_free()
-
+	if resourcesDock:
+		remove_control_from_bottom_panel(resourcesDock)
+		resourcesDock.free()
 
 func _has_main_screen():
 	return true

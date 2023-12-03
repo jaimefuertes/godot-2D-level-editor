@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://wreuixh5d83f"]
+
+[ext_resource type="PackedScene" uid="uid://bbm4518tbw2kh" path="res://addons/gle2d/components/Resource.tscn" id="1_bcyd7"]
+[ext_resource type="Texture2D" uid="uid://ckxvtle0p3tcf" path="res://addons/gle2d/resources/Door.png" id="2_12vt8"]
+[ext_resource type="PackedScene" uid="uid://bfk2xgomn8s56" path="res://node_2d.tscn" id="3_ayhge"]
+[ext_resource type="Texture2D" uid="uid://b34nyp1mj6ssc" path="res://addons/gle2d/resources/Lever.png" id="3_k6lhg"]
+
+[node name="ResourceContainer" type="TabContainer"]
+custom_minimum_size = Vector2(0, 140)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Blocks" type="TabBar" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="ScrollContainer" parent="Blocks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="GridContainer" parent="Blocks/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 15
+
+[node name="Resource" parent="Blocks/HBoxContainer/HBoxContainer" instance=ExtResource("1_bcyd7")]
+layout_mode = 2
+texture = ExtResource("2_12vt8")
+scene = ExtResource("3_ayhge")
+
+[node name="Decoration" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="ScrollContainer" parent="Decoration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="GridContainer" parent="Decoration/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 15
+
+[node name="Resource" parent="Decoration/HBoxContainer/HBoxContainer" instance=ExtResource("1_bcyd7")]
+layout_mode = 2
+texture = ExtResource("3_k6lhg")
+scene = ExtResource("3_ayhge")
