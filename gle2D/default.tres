@@ -6,7 +6,59 @@
 resource_local_to_scene = true
 script = ExtResource("1_3y4jx")
 hasChanges = false
-nodes = {}
-unsavedNodes = {}
-connections = {}
-unsavedConnections = {}
+nodes = {
+"Dash": {
+"doors": 2.0,
+"position_offset": Vector2(980, 220)
+},
+"Double Jump": {
+"doors": 2.0,
+"position_offset": Vector2(680, 420)
+},
+"Nexus": {
+"doors": 5.0,
+"position_offset": Vector2(360, 260)
+},
+"Phantom Dash": {
+"doors": 2.0,
+"position_offset": Vector2(60, 400)
+},
+"Tutorial": {
+"doors": 3.0,
+"position_offset": Vector2(-240, 160)
+}
+}
+unsavedNodes = {
+"Dash": {
+"doors": 2.0,
+"position_offset": Vector2(980, 220)
+},
+"Double Jump": {
+"doors": 2.0,
+"position_offset": Vector2(680, 420)
+},
+"Nexus": {
+"doors": 5.0,
+"position_offset": Vector2(360, 260)
+},
+"Phantom Dash": {
+"doors": 2.0,
+"position_offset": Vector2(60, 400)
+},
+"Tutorial": {
+"doors": 3.0,
+"position_offset": Vector2(-240, 160)
+}
+}
+connections = {
+"Double Jump": [[1, "Dash", 1]],
+"Nexus": [[2, "Dash", 0], [3, "Double Jump", 0]],
+"Phantom Dash": [[0, "Nexus", 4]],
+"Tutorial": [[0, "Nexus", 0], [1, "Nexus", 1], [2, "Phantom Dash", 1]]
+}
+unsavedConnections = {
+"Double Jump": [[1, "Dash", 1]],
+"Nexus": [[2, "Dash", 0], [3, "Double Jump", 0]],
+"Phantom Dash": [[0, "Nexus", 4]],
+"Tutorial": [[0, "Nexus", 0], [1, "Nexus", 1], [2, "Phantom Dash", 1]]
+}

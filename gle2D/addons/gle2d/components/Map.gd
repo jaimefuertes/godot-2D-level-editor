@@ -9,11 +9,10 @@ class_name Map
 @export var unsavedConnections = {}
 
 
-func addNode(node, position_offset, doors, scene):
+func addNode(node, position_offset, doors):
 	unsavedNodes[node] = {
 		"position_offset": position_offset,
 		"doors": doors,
-		"scene": scene
 	}
 	hasChanges = true
 
@@ -21,13 +20,11 @@ func updateNodeOffset(node, position_offset):
 	unsavedNodes[node]["position_offset"] = position_offset
 	hasChanges = true
 
-func updateNode(node, newName, newDoors, newScene):
-	print(node, newName, newDoors)
+func updateNode(node, newName, newDoors):
 	if node != newName:
 		unsavedNodes[newName] = {
 			"position_offset": unsavedNodes[node]["position_offset"],
 			"doors": newDoors,
-			"scene":unsavedNodes[node]["scene"]
 		}
 		unsavedNodes.erase(node)
 	else:

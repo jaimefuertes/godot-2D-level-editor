@@ -4,6 +4,8 @@ class_name MapManager
 
 # Preload Needed Scenes
 const RoomNode = preload("res://addons/gle2d/components/RoomNode.tscn")
+const RoomTemplate = preload("res://addons/gle2d/resources/RoomTemplate.tscn")
+const DoorTemplate = preload("res://addons/gle2d/resources/DoorTemplate.tscn")
 
 # Toolbar References
 @onready var newNodeButton : Button = $Content/VBoxContainer/Toolbar/NewNodeButton
@@ -25,6 +27,7 @@ var editMapNodeDialogTitle = "Edit Node"
 var mapResource = null
 var mapResourcePath = ""
 var selectedNodes = []
+
 
 # Manager Functions
 func _ready():
@@ -139,6 +142,8 @@ func loadMapResource():
 				if mapNode.title == connection[1]:
 					to = mapNode.name
 			mapEditor.connect_node(from, connection[0], to, connection[2])
+			# update mapNode
+			updateDoors(from, connection[0], to, connection[2], true)
 	mapEditor.show()
 
 # saves map to resource	
@@ -157,31 +162,70 @@ func saveMapResource():
 	
 	mapResource.saved()
 	ResourceSaver.save(mapResource, mapResourcePath)
+
+func updateDoors(from, fromPort, to, toPort, isCreation):
+	var fromNode = mapEditor.get_node(str(from))
+	var toNode = mapEditor.get_node(str(to))
+	
+	var fromScene = load("res://" + fromNode.title + ".tscn")
+	var fromRoom = fromScene.instantiate()
+	
+	var toScene = load("res://" + toNode.title + ".tscn")
+	var toRoom = toScene.instantiate()
+	
+	var fromDoor : DoorTemplate = fromRoom.get_node("Door" + str(fromPort))
+	
+	var toDoor : DoorTemplate = toRoom.get_node("Door" + str(toPort))
+		
+	if isCreation:
+		fromDoor.roomTo = "res://" + toNode.title + ".tscn"
+		fromDoor.doorTo = "Door" + str(toPort)
+		toDoor.roomTo = "res://" + fromNode.title + ".tscn"
+		toDoor.doorTo = "Door" + str(fromPort)
+	else:
+		fromDoor.roomTo = ""
+		fromDoor.doorTo = ""
+		toDoor.roomTo = ""
+		toDoor.doorTo = ""
+		
+	fromScene.pack(fromRoom)
+	toScene.pack(toRoom)
+	
+	ResourceSaver.save(fromScene, "res://" + fromNode.title + ".tscn")
+	ResourceSaver.save(toScene, "res://" + toNode.title + ".tscn")
+	
+	
+
 # Map Nodes Functions
 
 # Create New Map Node
 func createNewNode(roomName, positionOffset, doors, scenePath):
-	# instance
+	# instances
 	var roomNodeInstance : GraphNode = RoomNode.instantiate()
-	
-	# create room scene
-	var level = Node2D.new()
-	level.name = "Level"
+	var room = RoomTemplate.instantiate()
 	var roomScene = PackedScene.new()
-	roomScene.pack(level)
-	ResourceSaver.save(roomScene, scenePath)
 	
 	roomNodeInstance.title = roomName
 	if positionOffset != null:
 		roomNodeInstance.position_offset = positionOffset
 	# edit input/output
 	for index in range(doors):
+		var door = DoorTemplate.instantiate()
+		door.name = "Door" + str(index)
+		room.add_child(door)
+		door.owner = room
 		var label = Label.new()
 		label.text = "Door" + str(index)
 		roomNodeInstance.add_child(label)
 		roomNodeInstance.set_slot(index, true, 0, Color(255, 255, 255), true, 0, Color(255, 255, 255))
+	
+	
+	# create room scene
+	roomScene.pack(room)
+	ResourceSaver.save(roomScene, scenePath)
+	
 	# add to resource
-	mapResource.addNode(roomNodeInstance.title, roomNodeInstance.position_offset, doors, scenePath)
+	mapResource.addNode(roomNodeInstance.title, roomNodeInstance.position_offset, doors)
 	# add to map
 	mapEditor.add_child(roomNodeInstance)
 
@@ -211,6 +255,7 @@ func deleteNode():
 	selectedNodes = []
 	deleteNodeButton.disabled = true
 	editNodeButton.disabled = true
+	openNodeButton.disabled = true
 
 # Edit Node Button
 func _on_edit_node_button_pressed():
@@ -224,7 +269,7 @@ func _on_edit_node_button_pressed():
 func _on_open_node_button_pressed():
 	var editorPlugin = EditorPlugin.new()
 	var editorInterface = editorPlugin.get_editor_interface()
-	editorInterface.open_scene_from_path("res://node_2d.tscn")
+	editorInterface.open_scene_from_path("res://" + selectedNodes[0].title + ".tscn")
 	editorInterface.set_main_screen_editor("2D")
 
 # Dialog Confirmation
@@ -284,16 +329,22 @@ func _on_map_editor_connection_request(from_node, from_port, to_node, to_port):
 		if dict["from"] == from_node and dict["from_port"] == from_port:
 			# there is a connection from from_node
 			mapEditor.disconnect_node(from_node, from_port, dict["to"], dict["to_port"])
+			updateDoors(from_node, from_port, dict["to"], dict["to_port"], false)
 		if dict["to"] == to_node and dict["to_port"] == to_port:
 			# there is a connection to to_node
 			mapEditor.disconnect_node(dict["from"], dict["from_port"], to_node, to_port)
+			updateDoors(dict["from"], dict["from_port"], to_node, to_port, false)
+			
 	# connects to new node
 	mapEditor.connect_node(from_node, from_port, to_node, to_port)
+	updateDoors(from_node, from_port, to_node, to_port, true)
 	
 	
 # Disconnects 2 node
 func _on_map_editor_disconnection_request(from_node, from_port, to_node, to_port):
 	mapEditor.disconnect_node(from_node, from_port, to_node, to_port)
+	updateDoors(from_node, from_port, to_node, to_port, false)
+	
 
 # Activate Delete button
 func _on_map_editor_node_selected(node):

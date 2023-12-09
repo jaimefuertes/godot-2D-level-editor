@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d28nl3xww732i"]
 
 [ext_resource type="PackedScene" uid="uid://dcj71atkv2hrd" path="res://addons/gle2d/views/tabs/MapTab.tscn" id="1_k7mps"]
-[ext_resource type="PackedScene" uid="uid://cqa8q3d5ny6ap" path="res://addons/gle2d/views/tabs/PresetTab.tscn" id="3_pqraa"]
+[ext_resource type="PackedScene" uid="uid://cqa8q3d5ny6ap" path="res://addons/gle2d/views/tabs/MapViewer.tscn" id="2_pfe7e"]
 [ext_resource type="PackedScene" uid="uid://wdhu4h8r2jfp" path="res://addons/gle2d/views/tabs/Resources.tscn" id="4_x6mx4"]
 
 [node name="MainView" type="Control"]
@@ -29,7 +29,7 @@ tab_alignment = 1
 [node name="Map" parent="Margin/TabContainer" instance=ExtResource("1_k7mps")]
 layout_mode = 2
 
-[node name="Preset" parent="Margin/TabContainer" instance=ExtResource("3_pqraa")]
+[node name="Map Viewer" parent="Margin/TabContainer" instance=ExtResource("2_pfe7e")]
 visible = false
 layout_mode = 2
 
