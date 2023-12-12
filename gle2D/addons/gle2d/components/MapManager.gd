@@ -129,7 +129,7 @@ func loadMapResource():
 	
 	for key in nodes.keys():
 		var node = nodes[key]
-		createNewNode(key, node["position_offset"], node["doors"], node["scene"])
+		createNewNode(key, node["position_offset"], node["doors"], "res://"+key+".tscn")
 	
 	# add connections to nodes
 	for node in nodeConnetions.keys():

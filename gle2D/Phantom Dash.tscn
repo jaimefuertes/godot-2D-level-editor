@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlwscm16rgam1"]
 
-[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/DoorTemplate.tscn" id="1_rltw0"]
-[ext_resource type="Script" path="res://addons/gle2d/resources/DoorTemplate.gd" id="2_7rkbo"]
+[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/DoorTemplate.tscn" id="1_rnos2"]
+[ext_resource type="Script" path="res://addons/gle2d/resources/DoorTemplate.gd" id="2_e1hfr"]
 
 [node name="Level" type="Node2D"]
 
-[node name="Door0" type="Node2D" parent="." instance=ExtResource("1_rltw0")]
-script = ExtResource("2_7rkbo")
+[node name="Door0" type="Node2D" parent="." instance=ExtResource("1_rnos2")]
+script = ExtResource("2_e1hfr")
 roomTo = "res://Nexus.tscn"
 doorTo = "Door4"
 
-[node name="Door1" type="Node2D" parent="." instance=ExtResource("1_rltw0")]
-script = ExtResource("2_7rkbo")
+[node name="Door1" type="Node2D" parent="." instance=ExtResource("1_rnos2")]
+script = ExtResource("2_e1hfr")
 roomTo = "res://Tutorial.tscn"
 doorTo = "Door2"
