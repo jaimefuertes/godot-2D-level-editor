@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs2byyi7bv0kh"]
+
+[ext_resource type="Script" path="res://addons/gle2d/components/ConfigManager.gd" id="1_7avmo"]
+[ext_resource type="Script" path="res://addons/gle2d/components/LineEdit.gd" id="2_3ppui"]
+
+[node name="Configuration" type="TabBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfigManager" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7avmo")
+
+[node name="MarginContainer" type="MarginContainer" parent="ConfigManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfigManager/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Setting" type="Label" parent="ConfigManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="ConfigManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Route" type="HBoxContainer" parent="ConfigManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConfigManager/MarginContainer/VBoxContainer/Route"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Scene route"
+
+[node name="LineEdit" type="LineEdit" parent="ConfigManager/MarginContainer/VBoxContainer/Route"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "res://"
+script = ExtResource("2_3ppui")
+
+[node name="ConfigUpdateButton" type="Button" parent="ConfigManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Update settings"
+
+[node name="Error" type="Label" parent="ConfigManager/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.909804, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Config" type="Label" parent="ConfigManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Config file"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ConfigManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConfigExportButton" type="Button" parent="ConfigManager/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Export"
+
+[node name="ConfigLoadButton" type="Button" parent="ConfigManager/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "Load"
+
+[node name="FileDialog" type="FileDialog" parent="ConfigManager"]
+
+[connection signal="pressed" from="ConfigManager/MarginContainer/VBoxContainer/ConfigUpdateButton" to="ConfigManager" method="_on_config_update_button_pressed"]
+[connection signal="pressed" from="ConfigManager/MarginContainer/VBoxContainer/ConfigExportButton" to="ConfigManager" method="_on_config_export_button_pressed"]
+[connection signal="pressed" from="ConfigManager/MarginContainer/VBoxContainer/ConfigLoadButton" to="ConfigManager" method="_on_config_load_button_pressed"]

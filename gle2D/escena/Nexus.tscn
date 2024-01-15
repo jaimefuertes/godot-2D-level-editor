@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://drhso58n370s1"]
+
+[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/DoorTemplate.tscn" id="1_7hc7y"]
+[ext_resource type="Script" path="res://addons/gle2d/resources/DoorTemplate.gd" id="2_htrb5"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Door0" type="Node2D" parent="." instance=ExtResource("1_7hc7y")]
+script = ExtResource("2_htrb5")
+roomTo = "res://escena/Tutorial.tscn"
+doorTo = "Door0"
+
+[node name="Door1" type="Node2D" parent="." instance=ExtResource("1_7hc7y")]
+script = ExtResource("2_htrb5")
+roomTo = "res://escena/Tutorial.tscn"
+doorTo = "Door1"
+
+[node name="Door2" type="Node2D" parent="." instance=ExtResource("1_7hc7y")]
+script = ExtResource("2_htrb5")
+roomTo = "res://escena/Dash.tscn"
+doorTo = "Door0"
+
+[node name="Door3" type="Node2D" parent="." instance=ExtResource("1_7hc7y")]
+script = ExtResource("2_htrb5")
+roomTo = "res://escena/Double Jump.tscn"
+doorTo = "Door0"
+
+[node name="Door4" type="Node2D" parent="." instance=ExtResource("1_7hc7y")]
+script = ExtResource("2_htrb5")
+roomTo = "res://escena/Phantom Dash.tscn"
+doorTo = "Door0"

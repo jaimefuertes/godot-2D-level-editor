@@ -17,7 +17,7 @@ nodes = {
 },
 "Nexus": {
 "doors": 5.0,
-"position_offset": Vector2(360, 260)
+"position_offset": Vector2(360, 60)
 },
 "Phantom Dash": {
 "doors": 2.0,
@@ -39,7 +39,7 @@ unsavedNodes = {
 },
 "Nexus": {
 "doors": 5.0,
-"position_offset": Vector2(360, 260)
+"position_offset": Vector2(360, 60)
 },
 "Phantom Dash": {
 "doors": 2.0,
