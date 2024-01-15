@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://c88w5d0aik3qw"]
-
-[node name="RoomNode" type="GraphNode"]
-custom_minimum_size = Vector2(200, 170)
-offset_right = 194.0
-offset_bottom = 171.0
-title = "R. Name"
