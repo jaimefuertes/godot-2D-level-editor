@@ -1,21 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://wreuixh5d83f"]
+[gd_scene load_steps=2 format=3 uid="uid://wreuixh5d83f"]
 
-[ext_resource type="PackedScene" uid="uid://bbm4518tbw2kh" path="res://addons/gle2d/components/Resource.tscn" id="1_bcyd7"]
-[ext_resource type="Texture2D" uid="uid://ckxvtle0p3tcf" path="res://addons/gle2d/resources/Door.png" id="2_12vt8"]
-[ext_resource type="Texture2D" uid="uid://b34nyp1mj6ssc" path="res://addons/gle2d/resources/Lever.png" id="3_k6lhg"]
-
-[sub_resource type="PackedScene" id="PackedScene_kbtug"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("Level", "Node2D"),
-"node_count": 1,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0),
-"variants": [],
-"version": 3
-}
+[ext_resource type="Script" path="res://addons/gle2d/components/ResourceContainer.gd" id="1_jnhug"]
 
 [node name="ResourceContainer" type="TabContainer"]
 custom_minimum_size = Vector2(0, 140)
@@ -25,48 +10,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-
-[node name="Blocks" type="TabBar" parent="."]
-layout_mode = 2
-
-[node name="HBoxContainer" type="ScrollContainer" parent="Blocks"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="GridContainer" parent="Blocks/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 15
-
-[node name="Resource" parent="Blocks/HBoxContainer/HBoxContainer" instance=ExtResource("1_bcyd7")]
-layout_mode = 2
-texture = ExtResource("2_12vt8")
-scene = SubResource("PackedScene_kbtug")
-
-[node name="Decoration" type="TabBar" parent="."]
-visible = false
-layout_mode = 2
-
-[node name="HBoxContainer" type="ScrollContainer" parent="Decoration"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="GridContainer" parent="Decoration/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 15
-
-[node name="Resource" parent="Decoration/HBoxContainer/HBoxContainer" instance=ExtResource("1_bcyd7")]
-layout_mode = 2
-texture = ExtResource("3_k6lhg")
-scene = SubResource("PackedScene_kbtug")
+script = ExtResource("1_jnhug")

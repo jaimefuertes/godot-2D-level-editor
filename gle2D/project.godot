@@ -25,9 +25,13 @@ run/main_scene="res://addons/gle2d/views/tabs/Resources.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Config="*res://addons/gle2d/components/Config.gd"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gle2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/gle2d/plugin.cfg")
 
 [internationalization]
 

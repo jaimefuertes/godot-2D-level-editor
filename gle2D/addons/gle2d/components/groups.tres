@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GroupR" load_steps=2 format=3 uid="uid://c153uplx7d822"]
+
+[ext_resource type="Script" path="res://addons/gle2d/components/GroupResource.gd" id="1_yq4lv"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_yq4lv")
+activeGroups = {
+"Nuevo Grupo": {
+"Resource": ["res://addons/gle2d/resources/Door.png", "res://addons/gle2d/resources/DoorTest.tscn", "Nuevo Recurso"]
+}
+}

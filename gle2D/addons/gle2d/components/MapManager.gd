@@ -67,6 +67,7 @@ func applyTheme():
 # Create New Map
 func _on_new_map_button_pressed():
 	newMapDialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
+	newMapDialog.current_path = Config.path
 	newMapDialog.current_file = "default.tres"
 	newMapDialog.show()
 	
@@ -74,6 +75,7 @@ func _on_new_map_button_pressed():
 func _on_open_map_button_pressed():
 
 	newMapDialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	newMapDialog.current_path = Config.path
 	newMapDialog.show()
 
 # Save Map
@@ -129,7 +131,7 @@ func loadMapResource():
 	
 	for key in nodes.keys():
 		var node = nodes[key]
-		createNewNode(key, node["position_offset"], node["doors"], node["scene"])
+		createNewNode(key, node["position_offset"], node["doors"], Config.path+str(key)+".tscn")
 	
 	# add connections to nodes
 	for node in nodeConnetions.keys():
@@ -167,10 +169,10 @@ func updateDoors(from, fromPort, to, toPort, isCreation):
 	var fromNode = mapEditor.get_node(str(from))
 	var toNode = mapEditor.get_node(str(to))
 	
-	var fromScene = load("res://" + fromNode.title + ".tscn")
+	var fromScene = load(Config.path + fromNode.title + ".tscn")
 	var fromRoom = fromScene.instantiate()
 	
-	var toScene = load("res://" + toNode.title + ".tscn")
+	var toScene = load(Config.path + toNode.title + ".tscn")
 	var toRoom = toScene.instantiate()
 	
 	var fromDoor : DoorTemplate = fromRoom.get_node("Door" + str(fromPort))
@@ -178,9 +180,9 @@ func updateDoors(from, fromPort, to, toPort, isCreation):
 	var toDoor : DoorTemplate = toRoom.get_node("Door" + str(toPort))
 		
 	if isCreation:
-		fromDoor.roomTo = "res://" + toNode.title + ".tscn"
+		fromDoor.roomTo = Config.path + toNode.title + ".tscn"
 		fromDoor.doorTo = "Door" + str(toPort)
-		toDoor.roomTo = "res://" + fromNode.title + ".tscn"
+		toDoor.roomTo = Config.path + fromNode.title + ".tscn"
 		toDoor.doorTo = "Door" + str(fromPort)
 	else:
 		fromDoor.roomTo = ""
@@ -191,8 +193,8 @@ func updateDoors(from, fromPort, to, toPort, isCreation):
 	fromScene.pack(fromRoom)
 	toScene.pack(toRoom)
 	
-	ResourceSaver.save(fromScene, "res://" + fromNode.title + ".tscn")
-	ResourceSaver.save(toScene, "res://" + toNode.title + ".tscn")
+	ResourceSaver.save(fromScene, Config.path + fromNode.title + ".tscn")
+	ResourceSaver.save(toScene, Config.path + toNode.title + ".tscn")
 	
 	
 
@@ -269,14 +271,14 @@ func _on_edit_node_button_pressed():
 func _on_open_node_button_pressed():
 	var editorPlugin = EditorPlugin.new()
 	var editorInterface = editorPlugin.get_editor_interface()
-	editorInterface.open_scene_from_path("res://" + selectedNodes[0].title + ".tscn")
+	editorInterface.open_scene_from_path(Config.path + selectedNodes[0].title + ".tscn")
 	editorInterface.set_main_screen_editor("2D")
 
 # Dialog Confirmation
 func _on_new_map_node_dialog_confirmed():
 	var roomNameTextEdit = $NewMapNodeDialog/VBox/TextEdit
 	var doorsSpinBox =$NewMapNodeDialog/VBox/HBox/SpinBoxVBox/DoorsSpinBox
-	var scenePath = "res://" + str(roomNameTextEdit.text) + ".tscn"
+	var scenePath = Config.path + str(roomNameTextEdit.text) + ".tscn"
 	#crete new node
 	
 	createNewNode(roomNameTextEdit.text, null, doorsSpinBox.value, scenePath)
