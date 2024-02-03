@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckxvtle0p3tcf"
-path="res://.godot/imported/Door.png-f17dc7da4f479c778bd4b1ff7f379bfa.ctex"
+path="res://.godot/imported/Door.png-4c2063f6989bdd5ba222e9b25ad2ec60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gle2d/resources/Door.png"
-dest_files=["res://.godot/imported/Door.png-f17dc7da4f479c778bd4b1ff7f379bfa.ctex"]
+source_file="res://addons/gle2d/resources/images/Door.png"
+dest_files=["res://.godot/imported/Door.png-4c2063f6989bdd5ba222e9b25ad2ec60.ctex"]
 
 [params]
 

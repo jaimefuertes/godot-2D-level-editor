@@ -6,7 +6,13 @@
 resource_local_to_scene = true
 script = ExtResource("1_yq4lv")
 activeGroups = {
-"Nuevo Grupo": {
-"Resource": ["res://addons/gle2d/resources/Door.png", "res://addons/gle2d/resources/DoorTest.tscn", "Nuevo Recurso"]
-}
+"Building Blocks": {
+"Door": ["res://addons/gle2d/resources/images/Door.png", "res://addons/gle2d/resources/scenes/DoorTest.tscn", "Door"],
+"Resource": ["", "", ""]
+},
+"Characters": {},
+"Decoration": {
+"Glass": ["res://addons/gle2d/resources/images/EdgeGlass.png", "", "Glass"]
+},
+"Enemies": {}
 }

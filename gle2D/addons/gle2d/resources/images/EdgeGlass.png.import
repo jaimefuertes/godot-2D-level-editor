@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5vdi35fwygm4"
-path="res://.godot/imported/icon.png-f71f68b94dca5d68dd9bf4097841f3a2.ctex"
+uid="uid://bbgyjkdjfp3h7"
+path="res://.godot/imported/EdgeGlass.png-5eb523b0a30fdbbac9fe12c346e5dc78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/editor_icon_previewer/icon.png"
-dest_files=["res://.godot/imported/icon.png-f71f68b94dca5d68dd9bf4097841f3a2.ctex"]
+source_file="res://addons/gle2d/resources/images/EdgeGlass.png"
+dest_files=["res://.godot/imported/EdgeGlass.png-5eb523b0a30fdbbac9fe12c346e5dc78.ctex"]
 
 [params]
 

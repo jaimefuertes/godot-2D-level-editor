@@ -18,6 +18,7 @@ func _enter_tree():
 	add_control_to_bottom_panel(resourcesDock, "Resources")
 
 	add_autoload_singleton("Config", "res://addons/gle2d/components/Config.gd")
+	add_autoload_singleton("LevelManager", "res://addons/gle2d/components/LevelManager.gd")
 
 func _exit_tree():
 	if mainPanelInstance:

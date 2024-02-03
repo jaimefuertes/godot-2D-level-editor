@@ -42,6 +42,7 @@ func updateGroups():
 	for group in resourcesGroup.activeGroups:
 		instanceGroup(group)
 		for re in resourcesGroup.activeGroups[group]:
+			print(re)
 			instanceResource(re, resourcesGroup.activeGroups[group][re][0], resourcesGroup.activeGroups[group][re][1], group, resourcesGroup.activeGroups[group][re][2])
 	updateButton()
 
@@ -58,6 +59,8 @@ func instanceResource(resourceName, texture, scene, groupName, resName):
 	# create resource
 	var resourceInstance : MapResource = resource.instantiate()
 	
+	
+	resourceInstance.name = resName
 	resourceInstance.updateTexture(texture)
 	resourceInstance.updateScene(scene)
 	resourceInstance.updateName(resName)

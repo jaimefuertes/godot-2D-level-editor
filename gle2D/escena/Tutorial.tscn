@@ -1,21 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://ovglole8ln3o"]
+[gd_scene load_steps=6 format=3 uid="uid://ovglole8ln3o"]
 
-[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/DoorTemplate.tscn" id="1_1equs"]
-[ext_resource type="Script" path="res://addons/gle2d/resources/DoorTemplate.gd" id="2_eo14j"]
+[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/scenes/DoorTemplate.tscn" id="1_stkex"]
+[ext_resource type="Script" path="res://addons/gle2d/resources/scripts/DoorTemplate.gd" id="2_4vi2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue1vh"]
+size = Vector2(257, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgexr"]
+size = Vector2(20, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_at27c"]
 
 [node name="Level" type="Node2D"]
 
-[node name="Door0" type="Node2D" parent="." instance=ExtResource("1_1equs")]
-script = ExtResource("2_eo14j")
+[node name="Door0" parent="." instance=ExtResource("1_stkex")]
+position = Vector2(1023, 531)
+script = ExtResource("2_4vi2a")
 roomTo = "res://escena/Nexus.tscn"
 doorTo = "Door0"
 
-[node name="Door1" type="Node2D" parent="." instance=ExtResource("1_1equs")]
-script = ExtResource("2_eo14j")
+[node name="CollisionShape2D" parent="Door0/Area2D" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ue1vh")
+
+[node name="SpawnPoint" parent="Door0" index="1"]
+position = Vector2(-2, -37)
+
+[node name="Door1" parent="." instance=ExtResource("1_stkex")]
+position = Vector2(839, 585)
+script = ExtResource("2_4vi2a")
 roomTo = "res://escena/Nexus.tscn"
 doorTo = "Door1"
 
-[node name="Door2" type="Node2D" parent="." instance=ExtResource("1_1equs")]
-script = ExtResource("2_eo14j")
+[node name="CollisionShape2D" parent="Door1/Area2D" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_kgexr")
+
+[node name="SpawnPoint" parent="Door1" index="1"]
+position = Vector2(-33, 33)
+
+[node name="Door2" parent="." instance=ExtResource("1_stkex")]
+position = Vector2(20, 408)
+script = ExtResource("2_4vi2a")
 roomTo = "res://escena/Phantom Dash.tscn"
 doorTo = "Door1"
+
+[node name="CollisionShape2D" parent="Door2/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_at27c")
+
+[node name="SpawnPoint" parent="Door2" index="1"]
+position = Vector2(39, 4)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 388.0
+offset_top = 60.0
+offset_right = 449.0
+offset_bottom = 86.0
+text = "Tutorial"
+
+[connection signal="body_entered" from="Door0/Area2D" to="Door0" method="_on_area_2d_body_entered" flags=18]
+[connection signal="body_entered" from="Door1/Area2D" to="Door1" method="_on_area_2d_body_entered" flags=18]
+[connection signal="body_entered" from="Door2/Area2D" to="Door2" method="_on_area_2d_body_entered" flags=18]
+
+[editable path="Door0"]
+[editable path="Door1"]
+[editable path="Door2"]

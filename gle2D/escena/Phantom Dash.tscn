@@ -1,16 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8bjy4lielmk1"]
+[gd_scene load_steps=4 format=3 uid="uid://c8bjy4lielmk1"]
 
-[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/DoorTemplate.tscn" id="1_h6u06"]
-[ext_resource type="Script" path="res://addons/gle2d/resources/DoorTemplate.gd" id="2_egjgm"]
+[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/scenes/DoorTemplate.tscn" id="1_iwx0v"]
+[ext_resource type="Script" path="res://addons/gle2d/resources/scripts/DoorTemplate.gd" id="2_axrr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_at27c"]
 
 [node name="Level" type="Node2D"]
 
-[node name="Door0" type="Node2D" parent="." instance=ExtResource("1_h6u06")]
-script = ExtResource("2_egjgm")
+[node name="Door0" parent="." instance=ExtResource("1_iwx0v")]
+position = Vector2(1120, 583)
+script = ExtResource("2_axrr4")
 roomTo = "res://escena/Nexus.tscn"
 doorTo = "Door4"
 
-[node name="Door1" type="Node2D" parent="." instance=ExtResource("1_h6u06")]
-script = ExtResource("2_egjgm")
+[node name="CollisionShape2D" parent="Door0/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_at27c")
+
+[node name="SpawnPoint" parent="Door0" index="1"]
+position = Vector2(-33, 9)
+
+[node name="Door1" parent="." instance=ExtResource("1_iwx0v")]
+position = Vector2(1119, 65)
+script = ExtResource("2_axrr4")
 roomTo = "res://escena/Tutorial.tscn"
 doorTo = "Door2"
+
+[node name="CollisionShape2D" parent="Door1/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_at27c")
+
+[node name="SpawnPoint" parent="Door1" index="1"]
+position = Vector2(-38, 7)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 786.0
+offset_top = 29.0
+offset_right = 826.0
+offset_bottom = 55.0
+text = "PD"
+
+[connection signal="body_entered" from="Door0/Area2D" to="Door0" method="_on_area_2d_body_entered" flags=18]
+[connection signal="body_entered" from="Door1/Area2D" to="Door1" method="_on_area_2d_body_entered" flags=18]
+
+[editable path="Door0"]
+[editable path="Door1"]
