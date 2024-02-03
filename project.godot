@@ -32,7 +32,7 @@ LevelManager="*res://addons/gle2d/components/LevelManager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/editor_icon_previewer/plugin.cfg", "res://addons/gle2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/gle2d/plugin.cfg")
 
 [internationalization]
 
