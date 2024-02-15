@@ -1,1 +1,0 @@
-{"map":"res://map/default.tres","path":"res://escena/","player":"res://addons/gle2d/resources/scenes/PlayerTest.tscn","spawn":"New"}
