@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk0nfy3001thr"]
-
-[ext_resource type="PackedScene" uid="uid://by6xxtk72v2oc" path="res://addons/gle2d/resources/scenes/DoorTemplate.tscn" id="1_vs6kq"]
-[ext_resource type="Script" path="res://addons/gle2d/resources/scripts/DoorTemplate.gd" id="2_msxku"]
-
-[node name="Level" type="Node2D"]
-
-[node name="Door0" type="Node2D" parent="." instance=ExtResource("1_vs6kq")]
-script = ExtResource("2_msxku")
