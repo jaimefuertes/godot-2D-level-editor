@@ -12,7 +12,6 @@ Supports Godot 4.0.3 (I haven't checked other versions)
 GLE2D is an addon and to install it just copy the "addons/gle2d" folder into the "res://" folder in your project, resulting in "res://addons/gle2d" (if you already have an addons folder, copy the "gle2d" folder directly).
 After that you need to activate it. Go to Project > Project Settings > Plugins and tick the checkbox right next to GLE2D. This should add some autoloads and you can check them on the Project > Project Settings > Autoloads section. If any of the is not activated, do it manually.
 GLE2D is a **main screen** plugin, which means it shows up in the top toolbar next to 2D/3D views.
-![Main Screen](/media/mainScreen.png)
 
 ## Features
 
@@ -43,4 +42,4 @@ You will find a settings tab where you need to add the necessary information for
 
 You also need to export the settings into a file (by default in "res://settings.txt"). If you change the default, you need to edit the path inside the script that reads the file. 
 
-![Logo](/media/logo.png)
+![Logo](/logo.png)
